@@ -5,12 +5,16 @@ CS/MATH111 EXTRA CREDIT ASSIGNMENT
 For this assignment, you need to implement the RSA public-key cryptosystem in C++.
 
 Input:
+
 a) A public key (e, n) (you need to check whether the input is valid);
+
 b) Choice of encryption or decryption (”e” for encryption and ”d” for decryption);
 
 Additional input for encryption:
+
 c1) English text (in a text ﬁle). You can use well known quotes.
 Additional input for decryption:
+
 c2) Cipher text (in a text ﬁle). Note: in this part, you need to break RSA (follow your homework 2 (problem 2) instructions).
 
 Output:
