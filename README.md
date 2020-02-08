@@ -23,5 +23,7 @@ Your output should be: ”incrypted.txt”, where incrypted.txt is the name of t
 
 Example of input for decryption: 5 77 d ciphertext.txt, where ciphertext.txt is a text ﬁle with a ciphertext to be decrypted.
 Your output should be: p = 7, q = 11, ”decrypted.txt” where decrypted.txt is the name of the ﬁle with the decrypted text.
-Submission/Demo Instructions. The project is due Saturday, February 8, 11:50pm (on Gradescope).
+Submission/Demo Instructions.
+
+The project is due Saturday, February 8, 11:50pm (on Gradescope).
 
