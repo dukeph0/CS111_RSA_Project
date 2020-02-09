@@ -1,6 +1,6 @@
 /*
     Input:
-    a) A public key (e, d) (you need to check whether the input is valid);
+    a) A public key (e, n) (you need to check whether the input is valid);
     b) Choice of encryption or decryption ("e" for encryption and "d" for decryption)
 
     Additional input for encryption:
@@ -28,6 +28,7 @@
 #include <fstream>
 #include <map>
 #include <sstream>
+#include<iterator>
 
 int calcgcd(int a, int b);
 
@@ -42,6 +43,8 @@ int modularInverse(int a, int b);
 int calcLargeEx(int a, int b, int mod);
 
 std::string filetoString();
+
+std::vector <int> filetoString2();
 
 int calcTotient(int a);
 
@@ -61,12 +64,7 @@ int main()
 
 	std::vector<int>FactsofN;
 
-	std::vector<int>cipher = { 10, 7, 58, 30, 23, 62, 7, 64,
-		62, 23, 62, 61, 7, 41, 62, 21, 7, 49, 75, 7, 69, 53, 58,
-		37, 37, 41, 10, 64, 50, 7, 10, 64, 21, 62, 61, 35, 62, 61, 62,
-		7, 52, 10, 21, 58, 7, 49, 75, 7, 62, 26, 22, 53, 30, 21, 10, 37, 64 }; //Test Messages
-
-	std::vector<char>message = {'i', ' ', 'h', 'a','v','e',' ','n','e','v','e','r',' ','l','e','t',' ','m','y'}; //Test Messages
+	std::vector<int>cipher; 
 
 	std::vector<int>eMessage;
 
@@ -91,8 +89,6 @@ int main()
 	std::cout << std::endl << "Please input choice of action. e for encryption or d for decryption: ";
 
 	std::cin >> action;
-
-	str = filetoString();
 
 	std::map<char, int> m;
 	std::map<char, int>::iterator it;
@@ -124,25 +120,23 @@ int main()
 	m.insert(std::pair<char, int>('z', 27));
 	m.insert(std::pair<char, int>(' ', 28));
 	
+	
+
 	if (action == 'e') 
 	{
+		str = filetoString();
 		eMessage = encryption(pkeyE, pkeyN, str, m);
-		for (int i = 0; i < eMessage.size(); i++)
-		{
-			std::cout << eMessage[i] << ' ';
-		}
+		std::ofstream outFile("incrypted.txt");
+		for (const auto &e : eMessage) outFile << e << " ";
 	}
 
 	if (action == 'd')
 	{
+		cipher = filetoString2();
 		dMessage = decryption(pkeyE, pkeyN, Totient, cipher, m);
-		for (int i = 0; i < dMessage.size(); i++)
-		{
-			std::cout << dMessage[i];
-		}
+		std::ofstream outFile("decrypted.txt");
+		for (const auto &e : dMessage) outFile << e;
 	}
-
-	
 
 	return 0;
 }
@@ -253,7 +247,7 @@ int calcLargeEx(int a, int b, int mod)
 
 std::string filetoString() 
 {
-	std::ifstream file("message.txt"); //taking file as inputstream
+	std::ifstream file("message.txt"); 
 
 	std::string str;
 
@@ -261,7 +255,7 @@ std::string filetoString()
 	{
 		std::ostringstream ss;
 
-		ss << file.rdbuf(); // reading data
+		ss << file.rdbuf(); 
 
 		str = ss.str();
 	}
@@ -269,11 +263,34 @@ std::string filetoString()
 	return str;
 }
 
+std::vector <int> filetoString2()
+{
+	std::ifstream file("ciphertext.txt"); 
+
+	std::vector<int> vect;
+
+	if (file) 
+	{
+		int value;
+		
+		while (file >> value) 
+		{
+			vect.push_back(value);
+		}
+	}
+
+	return vect;
+}
+
 int calcTotient(int a) 
 {
 	int result = 1;
+
 	for (int i = 2; i < a; i++)
+
 		if (calcgcd(i, a) == 1)
+
 			result++;
+
 	return result;
 }
