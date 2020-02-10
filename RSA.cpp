@@ -52,177 +52,70 @@ int main(int argc, char *argv[])
 {
 
 	int pkeyE = 0, pkeyN = 0;
-
-
 	int p = 0, q = 0, Totient = 0;
-
-
 	char action = ' ';
 
 	std::ofstream myfile;
-
-
 	std::string str = "";
-
-
 	std::vector<int>FactsofN, cipher, eMessage, FirstInput, SecondInput;
-
-
 	std::vector <char> FourthInput, dMessage;
-
-
 	std::string hold = "", fileName;
-
-
 
 	int var = 0;
 
-
-
 	std::string FirstCharHold;
-
-
 	std::string SecondCharHold;
-
-
 	std::string ThirdCharHold;
-
-
 	std::string FourthCharHold;
-
-
 	FirstCharHold = argv[1];
-
-
 	SecondCharHold = argv[2];
-
-
 	ThirdCharHold = argv[3];
-
-
 	FourthCharHold = argv[4];
-
-
 	pkeyE = std::stoi(FirstCharHold);
-
-
 	pkeyN = std::stoi(SecondCharHold);
-
-
 	action = ThirdCharHold[0];
-
-
 	fileName = FourthCharHold;
-
-
 	FactsofN = factors(pkeyN);
-
-
 	p = FactsofN[FactsofN.size() - 2];
-
-
 	q = FactsofN[FactsofN.size() - 1];
-
-
 	Totient = calcTotient(p)*calcTotient(q);
-
-
 	std::map<char, int> m;
-
-
 	std::map<char, int>::iterator it;
 
-
 	m.insert(std::pair<char, int>('A', 2));
-
-
 	m.insert(std::pair<char, int>('B', 3));
-
-
 	m.insert(std::pair<char, int>('C', 4));
-
-
 	m.insert(std::pair<char, int>('D', 5));
-
-
 	m.insert(std::pair<char, int>('E', 6));
-
-
 	m.insert(std::pair<char, int>('F', 7));
-
-
 	m.insert(std::pair<char, int>('G', 8));
-
-
 	m.insert(std::pair<char, int>('H', 9));
-
-
 	m.insert(std::pair<char, int>('I', 10));
-
-
 	m.insert(std::pair<char, int>('J', 11));
-
-
 	m.insert(std::pair<char, int>('K', 12));
-
-
 	m.insert(std::pair<char, int>('L', 13));
-
-
 	m.insert(std::pair<char, int>('M', 14));
-
-
 	m.insert(std::pair<char, int>('N', 15));
-
-
 	m.insert(std::pair<char, int>('O', 16));
-
-
 	m.insert(std::pair<char, int>('P', 17));
-
-
 	m.insert(std::pair<char, int>('Q', 18));
-
-
 	m.insert(std::pair<char, int>('R', 19));
-
-
 	m.insert(std::pair<char, int>('S', 20));
-
-
 	m.insert(std::pair<char, int>('T', 21));
-
-
 	m.insert(std::pair<char, int>('U', 22));
-
-
 	m.insert(std::pair<char, int>('V', 23));
-
-
 	m.insert(std::pair<char, int>('W', 24));
-
-
 	m.insert(std::pair<char, int>('X', 25));
-
-
 	m.insert(std::pair<char, int>('Y', 26));
-
-
 	m.insert(std::pair<char, int>('Z', 27));
-
-
 	m.insert(std::pair<char, int>(' ', 28));
-
 
 	if (action == 'e') 
 	{
 
 		str = filetoString(fileName);
-
 		eMessage = encryption(pkeyE, pkeyN, str, m);
-
 		std::ofstream outFile("incrypted.txt");
-
 		for (const auto &e : eMessage) outFile << e << " ";
 
 	}
@@ -259,7 +152,6 @@ std::vector <int> factors(int x)
 	std::vector <int> factvec;
 
 	int i = 1;
-
 
 	while (i*i <= x) 
 	{
